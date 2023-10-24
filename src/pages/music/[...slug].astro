@@ -22,12 +22,10 @@ const { Content } = await post.render();
 	<article>
 		<div
 			class="hero-image"
-			transition:name=`media-image-${post.data.cover_art_url}`
-			transition:animate={fade({ duration: "2s" })}
 		>
 			{
 				post.data.cover_art_url && (
-					<img width={510} height={510} src={post.data.cover_art_url} alt="" />
+					<img width={510} height={510} src={post.data.cover_art_url} alt="" transition:name=`media-image-${post.data.cover_art_url}`/>
 				)
 			}
 		</div>
