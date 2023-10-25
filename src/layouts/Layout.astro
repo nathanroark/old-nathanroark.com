@@ -1,0 +1,38 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Footer from "~/components/Footer.astro";
+import Header from "~/components/Header.astro";
+// import Player from "~/components/Player";
+import "~/styles/transitions.css";
+import BaseHead from "~/components/BaseHead.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate?: string;
+  updatedDate?: string;
+  heroImage?: string;
+}
+
+// const { title } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+// class="bg-gray-950 text-gray-200 work-sans leading-normal text-base tracking-normal"
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+
+    <ViewTransitions />
+  </head>
+  <body class="no-scrollbar">
+    <Header />
+    <main
+      class="bg-gray-950 text-gray-200 work-sans leading-normal text-base tracking-normal"
+    >
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

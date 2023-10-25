@@ -1,99 +1,50 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import MusicLayout from "../../layouts/MusicLayout.astro";
-import { fade } from "astro:transitions";
+
+import Layout from "~/layouts/Layout.astro";
+import Record from "~/components/Record";
 
 export async function getStaticPaths() {
-	const posts = await getCollection("music");
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("music");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
-type Props = CollectionEntry<"music">;
+type Props = CollectionEntry<"music">["data"];
 
 const post = Astro.props;
 const { Content } = await post.render();
-
-// const { title, description, pubDate, updatedDate, cover_art_url } = post.data;
 ---
 
-<MusicLayout>
-	<article>
-		<div
-			class="hero-image"
-		>
-			{
-				post.data.cover_art_url && (
-					<img width={510} height={510} src={post.data.cover_art_url} alt="" transition:name=`media-image-${post.data.cover_art_url}`/>
-				)
-			}
-		</div>
-		<div class="prose">
-			<div class="title">
-				<div class="date">
-					{
-						post.data.updatedDate && (
-							<div class="last-updated-on">
-								Last updated on {post.data.updatedDate}
-							</div>
-						)
-					}
-				</div>
-				<h1>{post.data.album}</h1>
-				<h2>{post.data.artist}</h2>
-				<!-- <h4>
-					{
-						post.data.release_date && (
-							<div class="last-updated-on">
-								Released on {post.data.release_date}
-							</div>
-						)
-					}
-				</h4> -->
-				<hr />
-			</div>
-			<Content />
-		</div>
-	</article>
-</MusicLayout>
-
-<style>
-	main {
-		width: calc(100% - 2em);
-		max-width: 100%;
-		margin: 0;
-	}
-	.hero-image {
-		width: 100%;
-	}
-	.hero-image img {
-		display: block;
-		margin: 0 auto;
-		border-radius: 12px;
-		box-shadow: var(--box-shadow);
-	}
-	.prose {
-		width: 720px;
-		max-width: calc(100% - 2em);
-		margin: auto;
-		padding: 1em;
-		color: rgb(var(--gray-light));
-	}
-	.title {
-		margin-bottom: 1em;
-		padding: 1em 0;
-		text-align: center;
-		line-height: 1;
-	}
-	.title h1 {
-		margin: 0 0 0.5em 0;
-	}
-	.date {
-		margin-bottom: 0.5em;
-		color: rgb(var(--gray));
-	}
-	.last-updated-on {
-		font-style: italic;
-	}
-</style>
+<Layout
+  title={post.data.album}
+  description={post.data.album + "-" + post.data.artist}
+>
+  <section>
+    <div
+      class="container mx-auto max-w-screen-lg px-6 lg:px-0 flex flex-col items-start md:items-end md:flex-row pt-8 pb-12 overflow-hidden"
+    >
+      <Record
+        client:visible
+        albumId={post.slug}
+        title={post.data.album}
+        imageUrl={post.data.cover_art_url}
+      />
+      <div class="flex-1 flex flex-col justify-end pt-8">
+        <h1 class="text-5xl font-bold tracking-tight text-gray-100">
+          {post.data.album}
+        </h1>
+        <p class="mt-3 text-3xl">{post.data.artist}</p>
+        <p class="mt-2 text-lg">
+          {post.data.genres[0]} — {post.data.release_date}
+        </p>
+      </div>
+    </div>
+    <div
+      class="prose prose-invert md:prose-md md:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto px-6 lg:px-0"
+    >
+      <Content />
+    </div>
+  </section>
+</Layout>

@@ -12,4 +12,20 @@ const blog = defineCollection({
 	}),
 });
 
+const music = defineCollection({
+	// Type-check frontmatter using a schema
+	schema: z.object({
+		artist: z.string(),
+		album: z.string(),
+		// Transform string to Date object
+		release_date: z.coerce.date(),
+		post_date: z.coerce.date(),
+		cover_art_url: z.string(),
+		genres: z.array(z.string()),
+	}),
+});
+
+
+
+
 export const collections = { blog };
