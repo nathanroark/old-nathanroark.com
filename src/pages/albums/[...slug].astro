@@ -2,7 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 import Layout from "~/layouts/Layout.astro";
-import Record from "~/components/Record";
+import Record from "~/components/Record.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("albums");
@@ -26,7 +26,6 @@ const { Content } = await post.render();
       class="container mx-auto max-w-screen-lg px-6 lg:px-0 flex flex-col items-start md:items-end md:flex-row pt-8 pb-12 overflow-hidden"
     >
       <Record
-        client:visible
         albumId={post.slug}
         title={post.data.album}
         imageUrl={post.data.cover_art_url}
@@ -42,7 +41,7 @@ const { Content } = await post.render();
       </div>
     </div>
     <div
-      class="prose prose-invert md:prose-md md:prose-lg xl:prose-xl 2xl:prose-2xl mx-auto px-6 lg:px-0"
+      class="prose prose-invert md:prose-md md:prose-lg xl:prose-xl mx-auto px-6 lg:px-0"
     >
       <Content />
     </div>
