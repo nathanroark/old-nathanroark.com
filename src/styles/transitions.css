@@ -1,9 +1,11 @@
 .vynil-animation-in {
   animation: appear 600ms ease-in-out 300ms forwards;
 }
+
 .vynil-animation-in-spinning {
-  animation: appear 600ms ease-in-out 300ms forwards, spin 5s linear infinite;
+  animation: appear 600ms ease-in-out 400ms forwards, spin 1s linear;
 }
+
 .vynil-animation-out {
   animation: disappear 300ms ease-in-out forwards;
 }
@@ -12,18 +14,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 @keyframes appear {
   0% {
     left: 0;
     opacity: 0;
   }
+
   1% {
     opacity: 1;
   }
+
   100% {
     left: 24%;
     opacity: 1;
@@ -35,9 +41,11 @@
     left: 24%;
     opacity: 1;
   }
+
   99% {
     opacity: 1;
   }
+
   100% {
     left: 0;
     opacity: 0;

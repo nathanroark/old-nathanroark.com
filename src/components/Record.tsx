@@ -12,8 +12,7 @@ export default function Record({
   const isPlayingCurrentRecord =
     isPlaying.value && currentTrack.value?.albumId === albumId
   const className =
-    'absolute top-0 opacity-0 vynil-image vynil-animation-in' +
-    (isPlayingCurrentRecord ? '-spinning' : '')
+    'absolute top-0 opacity-0 vynil-image vynil-animation-in-spinning'
 
   return (
     <div class="relative shadow-xl mr-32 w-72 md:w-auto">
