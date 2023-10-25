@@ -5,13 +5,13 @@ import Layout from "~/layouts/Layout.astro";
 import Record from "~/components/Record";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("music");
+  const posts = await getCollection("albums");
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
   }));
 }
-type Props = CollectionEntry<"music">["data"];
+type Props = CollectionEntry<"albums">["data"];
 
 const post = Astro.props;
 const { Content } = await post.render();

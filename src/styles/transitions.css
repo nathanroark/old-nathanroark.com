@@ -3,7 +3,11 @@
 }
 
 .vynil-animation-in-spinning {
-  animation: appear 600ms ease-in-out 400ms forwards, spin 1s linear;
+  animation: appear 600ms ease-in-out 300ms forwards, spin 5s linear infinite;
+}
+
+.vynil-animation-in-spin {
+  animation: appear 600ms ease-in-out 300ms forwards, spin 1s linear;
 }
 
 .vynil-animation-out {

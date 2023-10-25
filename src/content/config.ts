@@ -12,7 +12,7 @@ const blog = defineCollection({
 	}),
 });
 
-const music = defineCollection({
+const albums = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		artist: z.string(),

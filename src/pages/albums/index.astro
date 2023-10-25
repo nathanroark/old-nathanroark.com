@@ -3,12 +3,9 @@ import Card from "~/components/Card.astro";
 import Layout from "~/layouts/Layout.astro";
 
 import { getCollection } from "astro:content";
-import type { AlbumQueryData } from "~/types";
+// import type { AlbumQueryData } from "~/types";
 
-// const response = await fetch("https://music-api.charca.workers.dev/albums");
-// const albums = await response.json();
-
-const posts = (await getCollection("music")).sort(
+const posts = (await getCollection("albums")).sort(
   (a, b) => a.data.release_date.valueOf() - b.data.release_date.valueOf(),
 );
 ---
