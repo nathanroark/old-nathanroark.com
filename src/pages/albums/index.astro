@@ -5,9 +5,11 @@ import Layout from "~/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 // import type { AlbumQueryData } from "~/types";
 
-const posts = (await getCollection("albums")).sort(
-  (a, b) => a.data.release_date.valueOf() - b.data.release_date.valueOf(),
-);
+// const posts = (await getCollection("albums")).sort(
+//   (a, b) => a.data.post_date - b.data.post_date,
+// );
+
+const posts = await getCollection("albums");
 ---
 
 <Layout title="Favorite Music" description="My favorite albums.">
@@ -15,10 +17,6 @@ const posts = (await getCollection("albums")).sort(
     <div
       class="container mx-auto max-w-screen-lg px-6 lg:px-0 flex items-center flex-wrap pt-4 pb-12"
     >
-      <!-- <h2 class="font-bold text-3xl text-black tracking-tight mb-12">
-        Recently Played
-      </h2> -->
-
       <div class="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {
           posts.map((post) => (

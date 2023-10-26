@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 type Props = {
   albumId: string;
   title: string;
@@ -9,16 +11,17 @@ const { imageUrl, title, albumId } = Astro.props;
 ---
 
 <div class="relative shadow-xl mr-32 w-72 md:w-auto">
-  <img
+  <Image
     src={imageUrl}
-    alt={title}
+    alt={albumId}
     width="400"
     height="400"
     class="block rounded-md tag-album-cover relative z-10 bg-white aspect-square"
     style={`view-transition-name: record-${albumId};`}
   />
-  <img
+  <Image
     src="/vynil-lp.webp"
+    alt="A vynil lp used for a fun animation."
     width="400"
     height="400"
     class="absolute top-0 opacity-0 vynil-image vynil-animation-in-spin"
